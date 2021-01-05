@@ -1,0 +1,25 @@
+
+<breakfast-menu>
+	<food1>
+		<name>Belgian Waffles</name>
+		<price>
+			<usd>100</usd>
+			<eur>50</eur>
+		</price>
+		<choco>Yes</choco>
+		<sugar>No</sugar>
+	</food1>
+	<food2>
+		<name>Strawberry Belgian Waffles</name>
+		<price>$7.95</price>
+	</food2>
+	<food3>
+		<name>Ananas Waffles</name>
+		<price>$228</price>
+	</food3>
+	<food4>
+		<name>Spartak Waffles</name>
+		<price>$1.95</price>
+	</food4>
+
+</breakfast-menu>
