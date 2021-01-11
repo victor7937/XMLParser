@@ -1,7 +1,6 @@
 package by.victor.jwd.dao;
 
 import by.victor.jwd.dao.impl.XMLDAOImpl;
-import by.victor.jwd.tree.XMLTree;
 
 public class DAOFactory {
     private static final DAOFactory instance = new DAOFactory();

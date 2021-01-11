@@ -1,4 +1,4 @@
-package by.victor.jwd.dao.utils.parser.impl;
+package by.victor.jwd.parser.impl;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

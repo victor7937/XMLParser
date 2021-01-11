@@ -1,9 +1,6 @@
-package by.victor.jwd.dao.utils.parser;
+package by.victor.jwd.parser;
 
-import by.victor.jwd.dao.utils.parser.impl.XMLParserImpl;
-import by.victor.jwd.service.ServiceFactory;
-import by.victor.jwd.service.XMLParseService;
-import by.victor.jwd.service.impl.XMLParseServiceImpl;
+import by.victor.jwd.parser.impl.XMLParserImpl;
 
 public class ParserFactory {
 

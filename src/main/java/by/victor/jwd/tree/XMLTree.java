@@ -1,5 +1,4 @@
 package by.victor.jwd.tree;
-
 import java.util.*;
 
 public class XMLTree {
@@ -90,7 +89,6 @@ public class XMLTree {
     private void DFS(Node node) {
         if (node != null) {
             List<Node> childNodes = node.getChildNodes();
-            //System.out.println(dashIncrement + node);
             treeViewStringBuilder.append(dashIncrement).append(node.toString()).append(" ").
                     append(node.hasAttributes() ? node.getAttributes() : "").append("\n");
             if(node.getContent().isEmpty()) {

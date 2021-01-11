@@ -1,4 +1,4 @@
-package by.victor.jwd.dao.utils.parser;
+package by.victor.jwd.parser;
 
 import by.victor.jwd.tree.XMLTree;
 

@@ -2,8 +2,8 @@ package by.victor.jwd.dao.impl;
 
 import by.victor.jwd.dao.XMLDAO;
 import by.victor.jwd.dao.utils.XmlFileReader;
-import by.victor.jwd.dao.utils.parser.ParserFactory;
-import by.victor.jwd.dao.utils.parser.XMLParser;
+import by.victor.jwd.parser.ParserFactory;
+import by.victor.jwd.parser.XMLParser;
 import by.victor.jwd.tree.XMLTree;
 
 import java.io.IOException;
