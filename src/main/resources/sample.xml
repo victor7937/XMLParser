@@ -1,25 +1,32 @@
-
 <breakfast-menu>
-	<food1>
-		<name>Belgian Waffles</name>
-		<price>
-			<usd>100</usd>
-			<eur>50</eur>
-		</price>
+	<food id="1">
+		<name >Belgian Waffles</name>
 		<choco>Yes</choco>
-		<sugar>No</sugar>
-	</food1>
-	<food2>
+		<sugar>Double</sugar>
+		<price currency="usd and eur">
+			<usd>$5.45</usd>
+			<eur>€4.3</eur>
+		</price>
+		<inStock>Yes</inStock>
+	</food>
+	<food id="2">
 		<name>Strawberry Belgian Waffles</name>
 		<price>$7.95</price>
-	</food2>
-	<food3>
-		<name>Ananas Waffles</name>
-		<price>$228</price>
-	</food3>
-	<food4>
+		<inStock>No</inStock>
+	</food>
+	<food id="3">
+		<name>Pineapple Waffles</name>
+		<price>$2.72</price>
+		<inStock>Yes</inStock>
+	</food>
+	<food id="4">
 		<name>Spartak Waffles</name>
-		<price>$1.95</price>
-	</food4>
-
+		<price>$0.45</price>
+		<manufacturer countryCode="375" producerId="738AD-56">
+			<country name="Belarus">
+				<city>Minsk</city>
+			</country>
+		</manufacturer>
+		<inStock>Yes</inStock>
+	</food>
 </breakfast-menu>

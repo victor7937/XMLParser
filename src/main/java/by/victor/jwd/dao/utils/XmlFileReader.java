@@ -4,11 +4,10 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Stream;
 
 public class XmlFileReader {
+
 
     public static String getXMLFileStringForm (String fileName) throws IOException, URISyntaxException {
         StringBuilder xmlStringForm = new StringBuilder();

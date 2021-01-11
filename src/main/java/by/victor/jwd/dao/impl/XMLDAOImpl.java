@@ -11,13 +11,15 @@ import java.net.URISyntaxException;
 
 public class XMLDAOImpl implements XMLDAO {
 
+    private static final String FILENAME = "sample.xml";
+
     @Override
     public XMLTree getXMLTree() {
         ParserFactory factory = ParserFactory.getInstance();
         XMLParser xmlParser = factory.getXMLParser();
         String xmlStringForm;
         try {
-            xmlStringForm = XmlFileReader.getXMLFileStringForm("sample.xml");
+            xmlStringForm = XmlFileReader.getXMLFileStringForm(FILENAME);
         } catch (IOException | URISyntaxException e) {
             return null;
         }

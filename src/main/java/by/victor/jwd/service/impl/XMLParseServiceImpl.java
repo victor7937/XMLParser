@@ -13,6 +13,6 @@ public class XMLParseServiceImpl implements XMLParseService {
         XMLDAO dao = factory.getXMLDAO();
         XMLTree tree = dao.getXMLTree();
 
-        return tree.toString();
+        return tree.getTreeStructureString();
     }
 }

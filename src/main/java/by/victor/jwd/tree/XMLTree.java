@@ -4,29 +4,63 @@ import java.util.*;
 
 public class XMLTree {
     private Node root;
+    private String dashIncrement;
+    private StringBuilder treeViewStringBuilder;
 
     public static class Node {
         private String data;
+        private String content;
         private List<Node> childNodes;
-        private boolean finalNode;
+        Map<String, String> attributes;
 
-        public boolean isFinalNode() {
-            return finalNode;
+        public String getContent() {
+            return content;
         }
 
-        public void setFinalNode(boolean finalNode) {
-            this.finalNode = finalNode;
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Node node = (Node) o;
+            return Objects.equals(data, node.data) &&
+                    Objects.equals(content, node.content) &&
+                    Objects.equals(childNodes, node.childNodes) &&
+                    Objects.equals(attributes, node.attributes);
         }
 
-        HashMap<String, String> attributes; //optional
+        @Override
+        public int hashCode() {
+            return Objects.hash(data, content, childNodes, attributes);
+        }
+
+        public void setContent(String content) {
+            this.content = content;
+        }
+
+        public boolean hasChildren() {
+            return !childNodes.isEmpty();
+        }
+
+        public void setAttributes(Map<String, String> attributes) {
+            this.attributes = attributes;
+        }
+
+        public Map<String, String> getAttributes() {
+            return attributes;
+        }
 
         public Node(String data) {
             this.data = data;
             this.childNodes = new ArrayList<>();
+            this.content = "";
         }
 
         public void setData(String data) {
             this.data = data;
+        }
+
+        public boolean hasAttributes (){
+            return !(attributes == null || attributes.isEmpty());
         }
 
         public List<Node> getChildNodes() {
@@ -39,7 +73,7 @@ public class XMLTree {
 
         @Override
         public String toString() {
-            return data;
+            return content.isEmpty() ? data : data + ": " + content;
         }
     }
 
@@ -53,45 +87,32 @@ public class XMLTree {
         this.root = root;
     }
 
-    private List<Node> getDfsNodeList() {
-        List<Node> dfsNodeLIst = new LinkedList<>();
-        fillDFSNodeList(root, dfsNodeLIst);
-        return dfsNodeLIst;
-    }
-
-    private void fillDFSNodeList(Node node, List<Node> nodesList) {
+    private void DFS(Node node) {
         if (node != null) {
             List<Node> childNodes = node.getChildNodes();
-            if (childNodes.isEmpty()){
-                node.setFinalNode(true);
+            //System.out.println(dashIncrement + node);
+            treeViewStringBuilder.append(dashIncrement).append(node.toString()).append(" ").
+                    append(node.hasAttributes() ? node.getAttributes() : "").append("\n");
+            if(node.getContent().isEmpty()) {
+                dashIncrement = dashIncrement + "--";
             }
-            nodesList.add(node);
-
-            if (!childNodes.isEmpty()) {
-                for (Node temp : childNodes) {
-                    this.fillDFSNodeList(temp, nodesList);
+            if (node.hasChildren()) {
+                for (Node tempNode : childNodes) {
+                    this.DFS(tempNode);
                 }
+                dashIncrement = dashIncrement.substring(0, dashIncrement.length() - 2);
             }
         }
     }
 
-    @Override
-    public String toString() {
-        List<Node> dfsNodeList = getDfsNodeList();
-        StringBuilder nodesBuilder= new StringBuilder("");
-        String spaceIncrement = "";
-        for (Node node: dfsNodeList) {
-            if (!node.isFinalNode()){
-                nodesBuilder.append("\n").append(spaceIncrement).append(node).append(": ");
-                spaceIncrement = spaceIncrement + "--";
-            }
-            else {
-                spaceIncrement = spaceIncrement.substring(0, spaceIncrement.length() - 2);
-                nodesBuilder.append(node);
-            }
-        }
-        return nodesBuilder.toString();
+    public String getTreeStructureString() {
+        dashIncrement = "";
+        treeViewStringBuilder = new StringBuilder("");
+        DFS(root);
+        return treeViewStringBuilder.toString();
     }
+
+
 
 }
 
