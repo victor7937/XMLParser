@@ -3,11 +3,11 @@ package by.victor.jwd.parser.impl;
 import by.victor.jwd.parser.XMLParser;
 import by.victor.jwd.tree.XMLTree;
 
-public class XMLParserImpl implements XMLParser {
+public final class XMLParserImpl implements XMLParser {
 
     public XMLParserImpl() { }
 
-    private void processXMLString(XMLTree.Node parent, String stringForModify) {
+    private void xmlTreeFilling(XMLTree.Node parent, String stringForModify) {
 
         NodeParser nodeParser = NodeParser.parse(stringForModify);
         if (nodeParser.isFinal()) {
@@ -18,8 +18,8 @@ public class XMLParserImpl implements XMLParser {
             XMLTree.Node childNode = new XMLTree.Node(nodeParser.getNodeData());
             childNode.setAttributes(nodeParser.getAttributes());
             parent.addChild(childNode);
-            processXMLString(childNode, nodeParser.getChildrenSubstring());
-            processXMLString(parent, nodeParser.getSiblingSubstring());
+            xmlTreeFilling(childNode, nodeParser.getChildrenSubstring());
+            xmlTreeFilling(parent, nodeParser.getSiblingSubstring());
         }
     }
 
@@ -32,7 +32,7 @@ public class XMLParserImpl implements XMLParser {
 
         XMLTree.Node rootNode = new XMLTree.Node(rootData);
         xmlTree.setRoot(rootNode);
-        processXMLString(rootNode, nodeParser.getChildrenSubstring());
+        xmlTreeFilling(rootNode, nodeParser.getChildrenSubstring());
 
         return xmlTree;
     }

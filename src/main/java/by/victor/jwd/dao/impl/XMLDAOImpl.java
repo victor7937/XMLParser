@@ -12,15 +12,19 @@ import java.net.URISyntaxException;
 public class XMLDAOImpl implements XMLDAO {
 
     private static final String FILENAME = "sample.xml";
+    private boolean fileNotOpenFlag;
 
     @Override
     public XMLTree getXMLTree() {
         ParserFactory factory = ParserFactory.getInstance();
         XMLParser xmlParser = factory.getXMLParser();
-        String xmlStringForm;
+        String xmlStringForm = "";
         try {
             xmlStringForm = XmlFileReader.getXMLFileStringForm(FILENAME);
         } catch (IOException | URISyntaxException e) {
+            fileNotOpenFlag = true;
+        }
+        if (fileNotOpenFlag) {
             return null;
         }
 

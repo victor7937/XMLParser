@@ -10,10 +10,52 @@ public class XMLTree {
         private String data;
         private String content;
         private List<Node> childNodes;
-        Map<String, String> attributes;
+        private Map<String, String> attributes;
+
+        public Node(String data) {
+            this.data = data;
+            this.childNodes = new ArrayList<>();
+            this.content = "";
+        }
+
+        public void setContent(String content) {
+            this.content = content;
+        }
 
         public String getContent() {
             return content;
+        }
+
+        public void setAttributes(Map<String, String> attributes) {
+            this.attributes = attributes;
+        }
+
+        public Map<String, String> getAttributes() {
+            return attributes;
+        }
+
+        public void setData(String data) {
+            this.data = data;
+        }
+
+        public String getData() {
+            return data;
+        }
+
+        public boolean hasAttributes (){
+            return !(attributes == null || attributes.isEmpty());
+        }
+
+        public boolean hasChildren() {
+            return !childNodes.isEmpty();
+        }
+
+        public List<Node> getChildNodes() {
+            return childNodes;
+        }
+
+        public void addChild(Node node) {
+            childNodes.add(node);
         }
 
         @Override
@@ -32,44 +74,6 @@ public class XMLTree {
             return Objects.hash(data, content, childNodes, attributes);
         }
 
-        public void setContent(String content) {
-            this.content = content;
-        }
-
-        public boolean hasChildren() {
-            return !childNodes.isEmpty();
-        }
-
-        public void setAttributes(Map<String, String> attributes) {
-            this.attributes = attributes;
-        }
-
-        public Map<String, String> getAttributes() {
-            return attributes;
-        }
-
-        public Node(String data) {
-            this.data = data;
-            this.childNodes = new ArrayList<>();
-            this.content = "";
-        }
-
-        public void setData(String data) {
-            this.data = data;
-        }
-
-        public boolean hasAttributes (){
-            return !(attributes == null || attributes.isEmpty());
-        }
-
-        public List<Node> getChildNodes() {
-            return childNodes;
-        }
-
-        public void addChild(Node node) {
-            childNodes.add(node);
-        }
-
         @Override
         public String toString() {
             return content.isEmpty() ? data : data + ": " + content;
@@ -78,12 +82,12 @@ public class XMLTree {
 
     public XMLTree() {}
 
-    public Node getRoot() {
-        return root;
-    }
-
     public void setRoot(Node root) {
         this.root = root;
+    }
+
+    public Node getRoot() {
+        return root;
     }
 
     private void DFS(Node node) {
@@ -91,7 +95,7 @@ public class XMLTree {
             List<Node> childNodes = node.getChildNodes();
             treeViewStringBuilder.append(dashIncrement).append(node.toString()).append(" ").
                     append(node.hasAttributes() ? node.getAttributes() : "").append("\n");
-            if(node.getContent().isEmpty()) {
+            if (node.hasChildren()) {
                 dashIncrement = dashIncrement + "--";
             }
             if (node.hasChildren()) {
@@ -109,8 +113,6 @@ public class XMLTree {
         DFS(root);
         return treeViewStringBuilder.toString();
     }
-
-
 
 }
 

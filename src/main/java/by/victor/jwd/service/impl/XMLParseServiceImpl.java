@@ -5,7 +5,7 @@ import by.victor.jwd.dao.XMLDAO;
 import by.victor.jwd.service.XMLParseService;
 import by.victor.jwd.tree.XMLTree;
 
-public class XMLParseServiceImpl implements XMLParseService {
+public final class XMLParseServiceImpl implements XMLParseService {
 
     @Override
     public String getXMLTreeView() {
