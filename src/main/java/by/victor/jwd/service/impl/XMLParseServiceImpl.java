@@ -11,8 +11,10 @@ public final class XMLParseServiceImpl implements XMLParseService {
     public String getXMLTreeView() {
         DAOFactory factory = DAOFactory.getInstance();
         XMLDAO dao = factory.getXMLDAO();
-        XMLTree tree = dao.getXMLTree();
-
-        return tree.getTreeStructureString();
+        XMLTree tree = dao.loadXMLTree();
+        if (tree == null) {
+            return "";
+        }
+        return tree.toTreeStructureString();
     }
 }

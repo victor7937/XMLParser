@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class NodeParser {
+public final class NodeParser {
 
     private String xmlForParse;
     private String nodeData;
@@ -20,42 +20,28 @@ public class NodeParser {
     private final String SPACES_OR_NTH_PATTERN = "\\s*";
     private final String ATTRIBUTES_PATTERN = "([a-zA-Z0-9]+)=\"([-_a-zA-Z0-9 \\.]+)\"";
 
-    public String getNodeData() {
-        return nodeData;
-    }
+    public String getNodeData() { return nodeData; }
 
-    public String getContent() {
-        return content;
-    }
+    public String getContent() { return content; }
 
-    public boolean isFinal() {
-        return this.isFinal;
-    }
+    public boolean isFinal() { return this.isFinal; }
 
     public boolean isContent() {
         return this.isFinal() && !(content == null || content.matches(SPACES_OR_NTH_PATTERN));
     }
 
-    public Map<String, String> getAttributes() {
-        return attributes;
-    }
+    public Map<String, String> getAttributes() { return attributes; }
 
-    public String getChildrenSubstring() {
-        return childrenSubstring;
-    }
+    public String getChildrenSubstring() { return childrenSubstring; }
 
-    public String getSiblingSubstring() {
-        return siblingSubstring;
-    }
+    public String getSiblingSubstring() { return siblingSubstring; }
 
     private NodeParser(String xmlForParse){
         this.xmlForParse = xmlForParse;
         parsingProcess();
     }
 
-    public static NodeParser parse (String xmlForParse) {
-        return new NodeParser(xmlForParse);
-    }
+    public static NodeParser parse (String xmlForParse) { return new NodeParser(xmlForParse); }
 
     private void parsingProcess () {
         Pattern pattern = Pattern.compile(NODE_PATTERN);

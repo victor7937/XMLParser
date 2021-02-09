@@ -2,19 +2,15 @@ package by.victor.jwd.parser;
 
 import by.victor.jwd.parser.impl.XMLParserImpl;
 
-public class ParserFactory {
+public final class ParserFactory {
 
-    private static final ParserFactory instance = new ParserFactory() {};
+    private static final ParserFactory instance = new ParserFactory();
 
     private final XMLParser xmlParser = new XMLParserImpl();
 
     private ParserFactory() {}
 
-    public XMLParser getXMLParser() {
-        return xmlParser;
-    }
+    public XMLParser getXMLParser() { return xmlParser; }
 
-    public static ParserFactory getInstance() {
-        return instance;
-    }
+    public static ParserFactory getInstance() { return instance; }
 }

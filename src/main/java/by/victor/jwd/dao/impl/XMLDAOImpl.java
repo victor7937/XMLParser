@@ -9,18 +9,18 @@ import by.victor.jwd.tree.XMLTree;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class XMLDAOImpl implements XMLDAO {
+public final class XMLDAOImpl implements XMLDAO {
 
     private static final String FILENAME = "sample.xml";
     private boolean fileNotOpenFlag;
 
     @Override
-    public XMLTree getXMLTree() {
+    public XMLTree loadXMLTree() {
         ParserFactory factory = ParserFactory.getInstance();
         XMLParser xmlParser = factory.getXMLParser();
         String xmlStringForm = "";
         try {
-            xmlStringForm = XmlFileReader.getXMLFileStringForm(FILENAME);
+            xmlStringForm = XmlFileReader.loadXMLFileStringForm(FILENAME);
         } catch (IOException | URISyntaxException e) {
             fileNotOpenFlag = true;
         }
